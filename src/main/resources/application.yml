@@ -1,0 +1,27 @@
+quarkus:
+  http:
+    port: 8083
+  container-image:
+    group: ""
+    name: ms-modulo-frecuencias
+    tag: latest
+    registry: franciscoct
+  kubernetes:
+    namespace: app-datos
+  log:
+    level: INFO
+    file:
+      enable: false
+      path: ./logs/ms-modulo-frecuencias.log
+      level: INFO
+      format: '{"log_data":{"fecha":"%d{yyyy-MM-dd HH:mm:ss}","Level":"%-5p","Mensaje":"%m","servicios":[%X{servicios}],"TiempoTotal":%X{tiempo}}}%n'
+      rotation:
+        max-file-size: 500M
+        max-backup-index: 5
+        rotate-on-boot: true
+        file-suffix: .yyyy-MM-dd
+  smallrye-openapi:
+    path: /contrato-interfaz-ms-modulo-frecuencias
+    info-title: Contrato de interfaz Microservicio de Frecuencias.
+    info-version: 1.0.0
+    #info-descripcion: Contrato de interfaz para la consulta de frecuencia de nombres propios.
