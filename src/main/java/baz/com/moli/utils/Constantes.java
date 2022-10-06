@@ -1,5 +1,7 @@
 package baz.com.moli.utils;
 
+import java.math.BigDecimal;
+
 public class Constantes {
 
   public final static String NOMBRE_MS = "ms-modulo-hipocoristicos";
@@ -16,6 +18,8 @@ public class Constantes {
   public static final String C3REMESASC = "c3remesas";
   public final static String C3MULTIMARCAS = "C3MULTIMARCAS";
   public static final short MEXICO = 1;
+  public static final BigDecimal TIPO_NOMBRE = BigDecimal.valueOf(1);
+  public static final BigDecimal TIPO_APELLIDO = BigDecimal.valueOf(2);
   public static final String SP_RESPUESTA_VACIA = "SIN REGISTRO";
   public static final String CERO_HIPOCORISTICOS = "SIN HIPOCORISTICO";
   public static final String UN_HIPOCORISTICO = "1 HIPOCORISTICO";

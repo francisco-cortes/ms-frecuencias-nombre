@@ -1,7 +1,9 @@
 package baz.com.moli.controllers;
 
 import baz.com.moli.dtos.EstadoResponseDto;
+import baz.com.moli.dtos.FrecuenciasResponseDto;
 import baz.com.moli.services.MonitoreoService;
+import baz.com.moli.services.ObtenerFrecuenciasService;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 
 import javax.inject.Inject;
@@ -25,6 +27,9 @@ public class FrecuenciasController {
   @Inject
   private MonitoreoService monitoreoService;
 
+  @Inject
+  private ObtenerFrecuenciasService obtenerFrecuenciasService;
+
   /**
           * <b>frecuencias</b>
           * @descripcion: Enpoint principal
@@ -40,7 +45,11 @@ public class FrecuenciasController {
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.APPLICATION_JSON)
   public Response frecuencias(@QueryParam("nombre") String nombre){
-    return Response.ok().entity("hola").build();
+    /*
+    Frecuencias de un nombre
+     */
+    FrecuenciasResponseDto respuesta = obtenerFrecuenciasService.frecuenciasTotales(nombre);
+    return Response.ok().entity(respuesta).build();
   }
 
   /**
