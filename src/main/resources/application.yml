@@ -29,6 +29,8 @@ frecuencias:
   conexionesdb:
     c3remesas:
       credenciales:
-        usuario: HcJMnM8gN-TKHnpBpbWb3A
-        contrasena: uQ9Rvb5ntqzOEFmBEjGoUQ
-      url: VZPbb5RYUAt2r9jIKHDM4KGTjRoThI9m3wNsXzozlR3wPPn_pW7SkbQm-1vf4lHA
+        usuario: C3Multimarcas
+        contrasena: BuSTxN4LMm
+      ip: 10.81.11.77
+      port: 1521
+      name: SFBDDEV

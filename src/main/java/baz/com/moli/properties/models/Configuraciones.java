@@ -8,5 +8,7 @@ package baz.com.moli.properties.models;
  */
 public interface Configuraciones {
   Credenciales credenciales();
-  String url();
+  String ip();
+  String port();
+  String name();
 }

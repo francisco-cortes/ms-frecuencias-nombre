@@ -14,6 +14,7 @@ public class Constantes {
 
   public static final String GUION = "-";
   public static final String C3REMESASC = "c3remesas";
+  public final static String C3MULTIMARCAS = "C3MULTIMARCAS";
   public static final short MEXICO = 1;
   public static final String SP_RESPUESTA_VACIA = "SIN REGISTRO";
   public static final String CERO_HIPOCORISTICOS = "SIN HIPOCORISTICO";
