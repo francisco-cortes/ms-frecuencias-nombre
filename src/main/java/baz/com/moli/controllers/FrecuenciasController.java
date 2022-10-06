@@ -9,6 +9,13 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+/**
+        * <b>FrecuenciasController</b>
+        * @descripcion: Enpoints
+        * @autor: Francisco Javier Cortes Torres, Desarrollador
+        * @ultimaModificacion: 06/10/22
+       */
+
 @Path("/remesas/frecuencias")
 public class FrecuenciasController {
 
@@ -18,8 +25,18 @@ public class FrecuenciasController {
   @Inject
   private MonitoreoService monitoreoService;
 
+  /**
+          * <b>frecuencias</b>
+          * @descripcion: Enpoint principal
+          * @autor: Francisco Javier Cortes Torres, Desarrollador
+          * @params: String
+          * @ultimaModificacion: 06/10/22
+        */
+
   @GET
   @Path("/obtener-frecuencias")
+  @Operation(summary = "Metodo que consulta las frecuencias de aparicion de un nombre o apellido",
+    description = "Metodo GET")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.APPLICATION_JSON)
   public Response frecuencias(@QueryParam("nombre") String nombre){
@@ -27,17 +44,18 @@ public class FrecuenciasController {
   }
 
   /**
-   * <b>status</b>
-   * @descripcion: Método para validar el estado del microservicio
-   * @autor: Francisco Javier Cortes Torres, Desarrollador
-   *
-   * @ultimaModificacion: 20/06/22
-   */
+          * <b>status</b>
+          * @descripcion: breve descripcion del metodo
+          * @autor: Francisco Javier Cortes Torres, Desarrollador
+          * @params: Endpoint de estado
+          * @ultimaModificacion: 06/10/22
+        */
+
   @GET
   @Path("/estado")
   @Operation(
     summary = "Metodo de consulta al estado y Uid del microservicio",
-    description = "description")
+    description = "METODO GET")
   @Produces(MediaType.APPLICATION_JSON)
   public Response status(){
     /*

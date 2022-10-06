@@ -25,3 +25,10 @@ quarkus:
     info-title: Contrato de interfaz Microservicio de Frecuencias.
     info-version: 1.0.0
     #info-descripcion: Contrato de interfaz para la consulta de frecuencia de nombres propios.
+frecuencias:
+  conexionesdb:
+    c3remesas:
+      credenciales:
+        usuario: HcJMnM8gN-TKHnpBpbWb3A
+        contrasena: uQ9Rvb5ntqzOEFmBEjGoUQ
+      url: VZPbb5RYUAt2r9jIKHDM4KGTjRoThI9m3wNsXzozlR3wPPn_pW7SkbQm-1vf4lHA
