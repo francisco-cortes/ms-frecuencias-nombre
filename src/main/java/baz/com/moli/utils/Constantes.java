@@ -20,6 +20,7 @@ public class Constantes {
   public static final short MEXICO = 1;
   public static final BigDecimal TIPO_NOMBRE = BigDecimal.valueOf(1);
   public static final BigDecimal TIPO_APELLIDO = BigDecimal.valueOf(2);
+  public static final BigDecimal ZERO_BY_DEFAULT = BigDecimal.valueOf(0);
   public static final String SP_RESPUESTA_VACIA = "SIN REGISTRO";
   public static final String CERO_HIPOCORISTICOS = "SIN HIPOCORISTICO";
   public static final String UN_HIPOCORISTICO = "1 HIPOCORISTICO";

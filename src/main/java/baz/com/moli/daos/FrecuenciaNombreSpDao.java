@@ -1,5 +1,6 @@
 package baz.com.moli.daos;
 
+import baz.com.moli.exceptions.ErrorInternoException;
 import baz.com.moli.models.CursorRespuestaSpModel;
 import baz.com.moli.utils.Constantes;
 import com.baz.iservicios.DaoUtilsService;
@@ -23,7 +24,7 @@ import java.sql.SQLException;
  */
 
 @ApplicationScoped
-public class FrecunciaNombreSpDao {
+public class FrecuenciaNombreSpDao {
   /**
    * Inyeccion de objeto para conexion a DB
    */
@@ -42,13 +43,20 @@ public class FrecunciaNombreSpDao {
   @Transactional
   public CursorRespuestaSpModel ejecutarSp(String nombre, BigDecimal tipoDato) throws SQLException{
 
+    final int CANTIDAD_PARAMETROS_SP = 5;
+    final int INDICE_NOMBRE = 1;
+    final int INDICE_TIPO_DATO = 2;
+    final int INDICE_CURSOR_SALIDA = 3;
+    final int INDICE_CODIGO_EXITO = 4;
+    final int INDICE_MENSAJE_EXITO = 5;
+
     DaoUtilsService daoUtilsService = new DaoUtils();
 
     //nombre de sp
     //log.registrarMensaje(nombreClaseMetodo, "SP: "+ SP_CONSULTA_FRECUENCIA);
     String SP_CONSULTA_FRECUENCIA = daoUtilsService.obtenerProcedure(
       Constantes.C3MULTIMARCAS, "PAFONETICO03",
-      "SPCONSULTAFRECU", 5);
+      "SPCONSULTAFRECU", CANTIDAD_PARAMETROS_SP);
 
     Connection conexion = null;
     CallableStatement declaracion = null;
@@ -71,11 +79,11 @@ public class FrecunciaNombreSpDao {
       /*
        * Define parametros de procedimiento y asigna valores de entrada
        */
-      declaracion.setString(1, nombre);
-      declaracion.setBigDecimal(2, tipoDato);
-      declaracion.registerOutParameter(3, OracleTypes.REF_CURSOR);
-      declaracion.registerOutParameter(4, OracleTypes.VARCHAR);
-      declaracion.registerOutParameter(5, OracleTypes.VARCHAR);
+      declaracion.setString(INDICE_NOMBRE, nombre);
+      declaracion.setBigDecimal(INDICE_TIPO_DATO, tipoDato);
+      declaracion.registerOutParameter(INDICE_CURSOR_SALIDA, OracleTypes.REF_CURSOR);
+      declaracion.registerOutParameter(INDICE_CODIGO_EXITO, OracleTypes.VARCHAR);
+      declaracion.registerOutParameter(INDICE_MENSAJE_EXITO, OracleTypes.VARCHAR);
 
       /*
        * Ejecuta procedimiento
@@ -85,9 +93,9 @@ public class FrecunciaNombreSpDao {
       /*
        * Obtiene respuestas del procedimiento
        */
-      resultSet = (ResultSet) declaracion.getObject(3);
+      resultSet = (ResultSet) declaracion.getObject(INDICE_CURSOR_SALIDA);
 
-      if(declaracion.getString(5).isEmpty()){
+      if(declaracion.getString(INDICE_MENSAJE_EXITO).isEmpty()){
 
         //log.registrarMensaje(nombreClaseMetodo, "Resultado Vacio de SPCONSULTAFRECU");
 
@@ -105,8 +113,9 @@ public class FrecunciaNombreSpDao {
       }
 
     }
-    catch (SQLException | ClassNotFoundException e){
-
+    catch (SQLException | ClassNotFoundException | NullPointerException e){
+      throw new ErrorInternoException(Constantes.ZERO_BY_DEFAULT,Constantes.ZERO_BY_DEFAULT,Constantes.ZERO_BY_DEFAULT,
+        Constantes.ZERO_BY_DEFAULT,e.getMessage(),Constantes.MENSAJE_CODIGO500);
     }
     finally {
       /*

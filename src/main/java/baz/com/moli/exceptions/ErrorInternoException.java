@@ -85,27 +85,27 @@ public class ErrorInternoException extends RuntimeException{
   /*
   getters
    */
-  private BigDecimal getFrecuenciaNombre(){
+  public BigDecimal getFrecuenciaNombre(){
     return frecuenciaNombre;
   }
 
-  private BigDecimal getTotalRegistrosNombre(){
+  public BigDecimal getTotalRegistrosNombre(){
     return totalRegistrosNombre;
   }
 
-  private BigDecimal getFrecuenciaApellidos(){
+  public BigDecimal getFrecuenciaApellidos(){
     return frecuenciaApellidos;
   }
 
-  private BigDecimal getTotalRegistrosApellidos(){
+  public BigDecimal getTotalRegistrosApellidos(){
     return totalRegistrosApellidos;
   }
 
-  private String getMensaje(){
+  public String getMensaje(){
     return mensaje;
   }
 
-  private String getCodigoInterno(){
+  public String getCodigoInterno(){
     return codigoInterno;
   }
 
