@@ -1,5 +1,6 @@
 package baz.com.moli.models;
 
+import baz.com.moli.utils.Constantes;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -11,8 +12,17 @@ import java.math.BigDecimal;
 @Setter
 public class CursorRespuestaSpModel {
 
+  /*
+  frecuencia del nombre/apellido obtenido
+   */
   private BigDecimal FNREGISTROS;
+  /*
+  total de nombres/apellidos existentes en la base de datos
+   */
   private BigDecimal FNTOTAL;
+  /*
+  usuaria que modifica tabla
+   */
   private String FNUSUARIO;
 
   /**
@@ -24,7 +34,7 @@ public class CursorRespuestaSpModel {
         */
 
   public BigDecimal getFnRegistros(){
-    if (this.FNREGISTROS == null){
+    if (this.FNREGISTROS == null || this.FNREGISTROS.intValue() == Constantes.ZERO_DEFUAULT){
       return this.FNREGISTROS == null ? BigDecimal.valueOf(0) : this.FNREGISTROS;
     }
     else {
@@ -42,7 +52,7 @@ public class CursorRespuestaSpModel {
 
 
   public BigDecimal getFnTotal(){
-    if (this.FNTOTAL == null){
+    if (this.FNTOTAL == null || this.FNREGISTROS.intValue() == Constantes.ZERO_DEFUAULT){
       return this.FNTOTAL == null ? BigDecimal.valueOf(0) : this.FNTOTAL;
     }
     else {
@@ -60,7 +70,7 @@ public class CursorRespuestaSpModel {
 
 
   public String getFnUsuario(){
-    if (this.FNUSUARIO == null){
+    if (this.FNUSUARIO == null || this.FNUSUARIO.isEmpty() ){
       return this.FNUSUARIO == null ? "" : this.FNUSUARIO;
     }
     else {

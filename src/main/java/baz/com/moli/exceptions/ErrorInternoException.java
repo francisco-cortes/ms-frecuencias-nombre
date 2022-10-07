@@ -18,48 +18,42 @@ public class ErrorInternoException extends RuntimeException{
   cuantas veces se encontro la cadena como nombre
    */
   @Schema(
-    example = "900",
-    description = "Numero Float, el numero representa las veces que el dato fue registrado como nombre"
+    example = "0"
   )
   private BigDecimal frecuenciaNombre;
   /*
   total de todos lo nombres en la base de datos
    */
   @Schema(
-    example = "900",
-    description = "Numero Float, el numero representa el total de elementos registrados como nombre"
+    example = "0"
   )
   private BigDecimal totalRegistrosNombre;
   /*
   total de veces que se encontro la cadena como apellido
    */
   @Schema(
-    example = "900",
-    description = "Numero Float, el numero representa las veces que el dato fue registrado como apellido"
+    example = "0"
   )
   private BigDecimal frecuenciaApellidos;
   /*
   total de todos los apellidos en la base de datos
    */
   @Schema(
-    example = "900",
-    description = "Numero Float, el numero representa el total de elementos registrados como apellido"
+    example = "0"
   )
   private BigDecimal totalRegistrosApellidos;
   /*
   mensaje de operacion interna
    */
   @Schema(
-    example = " ERROR SQL ",
-    description = "Cadena, mensaje de expcion en caso de existir"
+    example = " ERROR SQL"
   )
   private String mensaje;
   /*
   codigo de operacion interna
    */
   @Schema(
-    example = " 200 ",
-    description = "Cadena, codigo interno de la operacion del modulo"
+    example = "500"
   )
   private String codigoInterno;
 

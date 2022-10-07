@@ -56,7 +56,7 @@ public class FrecuenciasResponseDto {
   mensaje de operacion interna
    */
   @Schema(
-    example = " ERROR SQL ",
+    example = " Operacion Exitosa ",
     description = "Cadena, mensaje de expcion en caso de existir"
   )
   private String mensaje;

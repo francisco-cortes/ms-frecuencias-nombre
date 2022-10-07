@@ -2,6 +2,7 @@ package baz.com.moli.controllers;
 
 import baz.com.moli.dtos.EstadoResponseDto;
 import baz.com.moli.dtos.FrecuenciasResponseDto;
+import baz.com.moli.exceptions.ErrorInternoException;
 import baz.com.moli.services.MonitoreoService;
 import baz.com.moli.services.ObtenerFrecuenciasService;
 import baz.com.moli.utils.Constantes;
@@ -58,7 +59,7 @@ public class FrecuenciasController {
         responseCode = Constantes.HTTP_500,
         description = "Error Interno en la aplicación",
         content = @Content(mediaType = "application/json",
-          schema =  @Schema(implementation = FrecuenciasResponseDto.class))),
+          schema =  @Schema(implementation = ErrorInternoException.class))),
 
     })
   @Consumes(MediaType.TEXT_PLAIN)
@@ -67,7 +68,7 @@ public class FrecuenciasController {
     /*
     Frecuencias de un nombre
      */
-    FrecuenciasResponseDto respuesta = obtenerFrecuenciasService.frecuenciasTotales(nombre);
+    FrecuenciasResponseDto respuesta = obtenerFrecuenciasService.frecuenciasTotales(nombre.toUpperCase());
     return Response.ok().entity(respuesta).build();
   }
 
