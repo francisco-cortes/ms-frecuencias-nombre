@@ -4,6 +4,7 @@ import baz.com.moli.exceptions.ErrorInternoException;
 import baz.com.moli.models.CursorRespuestaSpModel;
 import baz.com.moli.utils.Constantes;
 import com.baz.iservicios.DaoUtilsService;
+import com.baz.log.LogServicio;
 import com.baz.servicios.DaoUtils;
 import oracle.jdbc.OracleTypes;
 
@@ -25,6 +26,9 @@ import java.sql.SQLException;
 
 @ApplicationScoped
 public class FrecuenciaNombreSpDao {
+
+  private static final String NOMBRE_CLASE = "FrecuenciaNombreSpDao";
+
   /**
    * Inyeccion de objeto para conexion a DB
    */
@@ -37,12 +41,16 @@ public class FrecuenciaNombreSpDao {
    * @autor: Francisco Javier Cortes Torres, Desarrollador
    *
    * @ultimaModificacion: 07/06/22
-   * @return
    */
 
   @Transactional
-  public CursorRespuestaSpModel ejecutarSp(String nombre, BigDecimal tipoDato) throws SQLException{
+  public CursorRespuestaSpModel ejecutarSp(String nombre, BigDecimal tipoDato, LogServicio log) throws SQLException{
 
+    final String NOMBRE_METODO = "ejecutarSp";
+    log.iniciarTiempoMetodo(NOMBRE_CLASE+NOMBRE_METODO,Constantes.NOMBRE_MS);
+    /*
+    constants para indice de sp
+     */
     final int CANTIDAD_PARAMETROS_SP = 5;
     final int INDICE_NOMBRE = 1;
     final int INDICE_TIPO_DATO = 2;
@@ -50,18 +58,25 @@ public class FrecuenciaNombreSpDao {
     final int INDICE_CODIGO_EXITO = 4;
     final int INDICE_MENSAJE_EXITO = 5;
 
+    /*
+    Clase constructora de sp de REMESAS UTILS
+     */
     DaoUtilsService daoUtilsService = new DaoUtils();
 
     //nombre de sp
-    //log.registrarMensaje(nombreClaseMetodo, "SP: "+ SP_CONSULTA_FRECUENCIA);
     String SP_CONSULTA_FRECUENCIA = daoUtilsService.obtenerProcedure(
       Constantes.C3MULTIMARCAS, "PAFONETICO03",
       "SPCONSULTAFRECU", CANTIDAD_PARAMETROS_SP);
-
+    log.registrarMensaje(NOMBRE_CLASE+NOMBRE_METODO, "SP ejecutado: "+ SP_CONSULTA_FRECUENCIA);
+    /*
+    objetos para consumo de sp
+     */
     Connection conexion = null;
     CallableStatement declaracion = null;
     ResultSet resultSet = null;
-
+    /*
+    modelo para respuesta de cursor
+     */
     CursorRespuestaSpModel cursor = new CursorRespuestaSpModel();
 
     try {
@@ -97,11 +112,14 @@ public class FrecuenciaNombreSpDao {
 
       if(declaracion.getString(INDICE_MENSAJE_EXITO).isEmpty()){
 
-        //log.registrarMensaje(nombreClaseMetodo, "Resultado Vacio de SPCONSULTAFRECU");
+        log.registrarMensaje(NOMBRE_CLASE+NOMBRE_METODO,
+          "Resultado Vacio de SPCONSULTAFRECU");
 
       }
       else {
-
+        /*
+        iteracion de cursor
+         */
         while (resultSet.next()){
 
           cursor.setFNREGISTROS(resultSet.getBigDecimal("FNREGISTROS"));
@@ -114,6 +132,7 @@ public class FrecuenciaNombreSpDao {
 
     }
     catch (SQLException | ClassNotFoundException | NullPointerException e){
+      log.registrarExcepcion(e,"Mensaje al ejecutar sp");
       throw new ErrorInternoException(Constantes.ZERO_BY_DEFAULT,Constantes.ZERO_BY_DEFAULT,Constantes.ZERO_BY_DEFAULT,
         Constantes.ZERO_BY_DEFAULT,e.getMessage(),Constantes.MENSAJE_CODIGO500);
     }
@@ -126,6 +145,8 @@ public class FrecuenciaNombreSpDao {
       assert resultSet != null;
       fabricaConexionDao.cerrarConexion(conexion,declaracion,resultSet);
     }
+    log.obtenerTiempoTotal(NOMBRE_CLASE+NOMBRE_METODO);
+    log.terminarTiempoMetodo(NOMBRE_CLASE+NOMBRE_METODO);
     return cursor;
   }
 }

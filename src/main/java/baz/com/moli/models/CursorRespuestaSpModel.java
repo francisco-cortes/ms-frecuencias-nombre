@@ -16,11 +16,13 @@ public class CursorRespuestaSpModel {
   private String FNUSUARIO;
 
   /**
-   * <b>getFnRegistro</b>
-   * @descripcion: Método getter que reemplaza valores null por cero
-   * @autor: Diego Vázquez Pérez, Desarrollador
-   * @ultimaModificacion: 08/07/2022
-   */
+          * <b>getFnRegistros</b>
+          * @descripcion: obtiene
+          * @autor: Método getter que reemplaza valores null por cero
+          * @params:
+          * @ultimaModificacion: 06/10/22
+        */
+
   public BigDecimal getFnRegistros(){
     if (this.FNREGISTROS == null){
       return this.FNREGISTROS == null ? BigDecimal.valueOf(0) : this.FNREGISTROS;
@@ -30,6 +32,15 @@ public class CursorRespuestaSpModel {
     }
   }
 
+  /**
+          * <b>getFnTotal</b>
+          * @descripcion: Método getter que reemplaza valores null por cero
+          * @autor: Francisco Javier Cortes Torres, Desarrollador
+          * @params:
+          * @ultimaModificacion: 06/10/22
+        */
+
+
   public BigDecimal getFnTotal(){
     if (this.FNTOTAL == null){
       return this.FNTOTAL == null ? BigDecimal.valueOf(0) : this.FNTOTAL;
@@ -38,6 +49,15 @@ public class CursorRespuestaSpModel {
       return this.FNTOTAL;
     }
   }
+
+  /**
+          * <b>getFnUsuario</b>
+          * @descripcion: Método getter que reemplaza valores null por cero
+          * @autor: Francisco Javier Cortes Torres, Desarrollador
+          * @params:
+          * @ultimaModificacion: 06/10/22
+        */
+
 
   public String getFnUsuario(){
     if (this.FNUSUARIO == null){
