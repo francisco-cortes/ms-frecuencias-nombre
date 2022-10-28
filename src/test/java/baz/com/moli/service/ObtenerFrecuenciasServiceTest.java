@@ -18,7 +18,7 @@ public class ObtenerFrecuenciasServiceTest {
   @DisplayName("Prueba Unitaria 1 nombre encontrado")
   @Test
   public void testFrecuenciasEncontradas(){
-    final String NOMBRE_EXISTENTE = "JOSE";
+    final String NOMBRE_EXISTENTE = "BELEN";
     boolean passed;
     FrecuenciasResponseDto frecuenciasResponseDto = obtenerFrecuenciasService.frecuenciasTotales(NOMBRE_EXISTENTE);
     if(frecuenciasResponseDto.getFrecuenciaNombre().intValue() > Constantes.ZERO_DEFUAULT){

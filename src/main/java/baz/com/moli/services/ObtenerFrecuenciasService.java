@@ -60,7 +60,7 @@ public class ObtenerFrecuenciasService {
       frecuenciaApellidos = frecuenciaNombreSpDao.ejecutarSp(nombre,Constantes.TIPO_APELLIDO, log);
 
     }
-    catch (SQLException | NullPointerException e) {
+    catch (Exception e) {
       log.registrarExcepcion(e,"Error al obtener frecuencias");
       log.registrarMensaje(NOMBRE_CLASE+NOMBRE_METODO,e.getMessage() + " para: " + nombre);
       throw new ErrorInternoException(Constantes.ZERO_BY_DEFAULT,Constantes.ZERO_BY_DEFAULT,Constantes.ZERO_BY_DEFAULT,

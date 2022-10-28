@@ -1,6 +1,6 @@
 quarkus:
   http:
-    port: 8083
+    port: 80
   container-image:
     group: ""
     name: ms-frecuencias-nombre
@@ -16,7 +16,7 @@ quarkus:
       level: INFO
       format: '{"log_data":{"fecha":"%d{yyyy-MM-dd HH:mm:ss}","Level":"%-5p","Mensaje":"%m","servicios":[%X{servicios}],"TiempoTotal":%X{tiempo}}}%n'
       rotation:
-        max-file-size: 500M
+        max-file-size: 200M
         max-backup-index: 5
         rotate-on-boot: true
         file-suffix: .yyyy-MM-dd
@@ -31,6 +31,6 @@ frecuencias:
       credenciales:
         usuario: C3Multimarcas
         contrasena: BuSTxN4LMm
-      ip: 10.81.11.77
-      port: 1521
-      name: SFBDDEV
+      ip: 10.97.167.38
+      port: 1522
+      name: ORCL

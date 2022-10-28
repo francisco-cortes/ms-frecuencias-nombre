@@ -1,9 +1,7 @@
 package baz.com.moli.controllers;
 
-import baz.com.moli.dtos.EstadoResponseDto;
 import baz.com.moli.dtos.FrecuenciasResponseDto;
 import baz.com.moli.exceptions.ErrorInternoException;
-import baz.com.moli.services.MonitoreoService;
 import baz.com.moli.services.ObtenerFrecuenciasService;
 import baz.com.moli.utils.Constantes;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -11,10 +9,13 @@ import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.inject.Inject;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
@@ -24,15 +25,10 @@ import javax.ws.rs.core.Response;
         * @ultimaModificacion: 06/10/22
        */
 
-@Path("/remesas/frecuencias")
+@RestController
+@RequestMapping("/datos/frecuencias")
+@Tag(name = "Controlador - Frecuencias")
 public class FrecuenciasController {
-
-  /*
-  instacia del servicio monitoreo a tra ves de inyeccion
-   */
-  @Inject
-  private MonitoreoService monitoreoService;
-
   @Inject
   private ObtenerFrecuenciasService obtenerFrecuenciasService;
 
@@ -43,9 +39,6 @@ public class FrecuenciasController {
           * @params: String
           * @ultimaModificacion: 06/10/22
         */
-
-  @GET
-  @Path("/obtener-frecuencias")
   @Operation(summary = "Metodo que consulta las frecuencias de aparicion de un nombre o apellido",
     description = "Metodo GET")
   @APIResponses(value =
@@ -62,39 +55,14 @@ public class FrecuenciasController {
           schema =  @Schema(implementation = ErrorInternoException.class))),
 
     })
-  @Consumes(MediaType.TEXT_PLAIN)
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response frecuencias(@QueryParam("nombre") String nombre){
+  @GetMapping(value ="/obtener-frecuencias",
+    produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE,
+    consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+  public Response frecuencias(@RequestParam("nombre") String nombre){
     /*
     Frecuencias de un nombre
      */
     FrecuenciasResponseDto respuesta = obtenerFrecuenciasService.frecuenciasTotales(nombre.toUpperCase());
     return Response.ok().entity(respuesta).build();
   }
-
-  /**
-          * <b>status</b>
-          * @descripcion: breve descripcion del metodo
-          * @autor: Francisco Javier Cortes Torres, Desarrollador
-          * @params: Endpoint de estado
-          * @ultimaModificacion: 06/10/22
-        */
-
-  @GET
-  @Path("/estado")
-  @Operation(
-    summary = "Metodo de consulta al estado y Uid del microservicio",
-    description = "METODO GET")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response status(){
-    /*
-    modelo con con los datos de salida
-     */
-    EstadoResponseDto estadoResponseDto = monitoreoService.generarUid();
-    /*
-    retorna el objeto como entidad para el parceo como json
-     */
-    return Response.ok().entity(estadoResponseDto).build();
-  }
-
 }

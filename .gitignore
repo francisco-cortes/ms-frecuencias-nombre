@@ -43,3 +43,8 @@ nb-configuration.xml
 log/
 
 .scannerwork/
+
+ms-frecuencias-nombre-deploy.yml
+deployment.yml
+ingress.yml
+service.yml

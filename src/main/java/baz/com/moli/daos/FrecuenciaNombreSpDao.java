@@ -3,9 +3,7 @@ package baz.com.moli.daos;
 import baz.com.moli.exceptions.ErrorInternoException;
 import baz.com.moli.models.CursorRespuestaSpModel;
 import baz.com.moli.utils.Constantes;
-import com.baz.iservicios.DaoUtilsService;
 import com.baz.log.LogServicio;
-import com.baz.servicios.DaoUtils;
 import oracle.jdbc.OracleTypes;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -51,22 +49,14 @@ public class FrecuenciaNombreSpDao {
     /*
     constants para indice de sp
      */
-    final int CANTIDAD_PARAMETROS_SP = 5;
     final int INDICE_NOMBRE = 1;
     final int INDICE_TIPO_DATO = 2;
     final int INDICE_CURSOR_SALIDA = 3;
     final int INDICE_CODIGO_EXITO = 4;
     final int INDICE_MENSAJE_EXITO = 5;
 
-    /*
-    Clase constructora de sp de REMESAS UTILS
-     */
-    DaoUtilsService daoUtilsService = new DaoUtils();
-
     //nombre de sp
-    String SP_CONSULTA_FRECUENCIA = daoUtilsService.obtenerProcedure(
-      Constantes.C3MULTIMARCAS, "PAFONETICO03",
-      "SPCONSULTAFRECU", CANTIDAD_PARAMETROS_SP);
+    String SP_CONSULTA_FRECUENCIA = "call C3MULTIMARCAS.PAFONETICO03.SPCONSULTAFRECU(?, ?, ?, ?, ?)";
     log.registrarMensaje(NOMBRE_CLASE+NOMBRE_METODO, "SP ejecutado: "+ SP_CONSULTA_FRECUENCIA);
     /*
     objetos para consumo de sp
@@ -131,7 +121,7 @@ public class FrecuenciaNombreSpDao {
       }
 
     }
-    catch (SQLException | ClassNotFoundException | NullPointerException e){
+    catch (Exception e){
       log.registrarExcepcion(e,"Mensaje al ejecutar sp");
       throw new ErrorInternoException(Constantes.ZERO_BY_DEFAULT,Constantes.ZERO_BY_DEFAULT,Constantes.ZERO_BY_DEFAULT,
         Constantes.ZERO_BY_DEFAULT,e.getMessage(),Constantes.MENSAJE_CODIGO500);
