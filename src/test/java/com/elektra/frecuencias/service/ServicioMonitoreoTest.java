@@ -1,7 +1,7 @@
 package com.elektra.frecuencias.service;
-import com.elektra.frecuencias.dtos.DtoEstadoResponse;
+import com.elektra.frecuencias.dto.DtoRespuestaEstado;
 import com.elektra.frecuencias.servicios.ServicioMonitoreo;
-import com.elektra.frecuencias.utilidades.Constantes;
+import com.elektra.frecuencias.util.Constantes;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ public class ServicioMonitoreoTest {
   @DisplayName("Prueba Unitaria sobre Monitoreo")
   @Test
   public void testUid(){
-    DtoEstadoResponse dtoEstadoResponse = servicioMonitoreo.generarUid();
-    assertEquals(Constantes.ESTADO_OK, dtoEstadoResponse.getMensaje());
+    DtoRespuestaEstado dtoRespuestaEstado = servicioMonitoreo.generarUid();
+    assertEquals(Constantes.ESTADO_OK, dtoRespuestaEstado.getMensaje());
   }
 }

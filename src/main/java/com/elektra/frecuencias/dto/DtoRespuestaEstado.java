@@ -1,4 +1,4 @@
-package com.elektra.frecuencias.dtos;
+package com.elektra.frecuencias.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.*;
@@ -17,7 +17,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Setter
 @Getter
 @JsonPropertyOrder({"mensaje","folio"})
-public class DtoEstadoResponse {
+public class DtoRespuestaEstado {
   /*
   mensaje
    */

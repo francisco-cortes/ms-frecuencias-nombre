@@ -1,4 +1,4 @@
-package com.elektra.frecuencias.dtos;
+package com.elektra.frecuencias.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.*;
@@ -7,7 +7,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import java.math.BigDecimal;
 
 /**
-        * <b>DtoFrecuenciasResponse</b>
+        * <b>DtoRespuestaFrecuencias</b>
         * @descripcion: breve descripción del contenido
         * @autor: Francisco Javier Cortes Torres, Desarrollador
         * @ultimaModificacion: 06/10/22
@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 @Setter
 @Getter
 @JsonPropertyOrder({"frecuenciaNombre","totalregistrosNombre","frecuenciaApellidos","totalRegistrosApellidos"})
-public class DtoFrecuenciasResponse {
+public class DtoRespuestaFrecuencias {
   /*
   cuantas veces se encontro la cadena como nombre
    */
@@ -60,12 +60,4 @@ public class DtoFrecuenciasResponse {
     description = "Cadena, mensaje de expcion en caso de existir"
   )
   private String mensaje;
-  /*
-  codigo de operacion interna
-   */
-  @Schema(
-    example = " 200 ",
-    description = "Cadena, codigo interno de la operacion del modulo"
-  )
-  private String codigoInterno;
 }

@@ -1,14 +1,16 @@
 package com.elektra.frecuencias.modelos;
 
-import com.elektra.frecuencias.utilidades.Constantes;
-import lombok.*;
+import com.elektra.frecuencias.util.Constantes;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Getter
 @Setter
 public class ModeloRespuestaSp {
 
@@ -26,13 +28,12 @@ public class ModeloRespuestaSp {
   private String FNUSUARIO;
 
   /**
-          * <b>getFnRegistros</b>
-          * @descripcion: obtiene
-          * @autor: Método getter que reemplaza valores null por cero
-          * @params:
-          * @ultimaModificacion: 06/10/22
-        */
-
+   * <b>getFnRegistros</b>
+   * @descripcion: Método getter obtiene valor de registros
+   * o que reemplaza valores null por cero
+   * @autor: Diego Vázquez Pérez, Desarrollador
+   * @ultimaModificacion: 06/10/22
+   */
   public BigDecimal getFnRegistros(){
     if (this.FNREGISTROS == null || this.FNREGISTROS.intValue() == Constantes.ZERO_DEFUAULT){
       return this.FNREGISTROS == null ? BigDecimal.valueOf(0) : this.FNREGISTROS;
@@ -43,14 +44,13 @@ public class ModeloRespuestaSp {
   }
 
   /**
-          * <b>getFnTotal</b>
-          * @descripcion: Método getter que reemplaza valores null por cero
-          * @autor: Francisco Javier Cortes Torres, Desarrollador
-          * @params:
-          * @ultimaModificacion: 06/10/22
-        */
-
-
+   * <b>getFnTotal</b>
+   * @descripcion: Método getter obtiene valor de registros
+   * o que reemplaza valores null por cero
+   * @autor: Diego Vázquez Pérez, Desarrollador
+   * @params:
+   * @ultimaModificacion: 06/10/22
+   */
   public BigDecimal getFnTotal(){
     if (this.FNTOTAL == null || this.FNREGISTROS.intValue() == Constantes.ZERO_DEFUAULT){
       return this.FNTOTAL == null ? BigDecimal.valueOf(0) : this.FNTOTAL;
@@ -59,16 +59,13 @@ public class ModeloRespuestaSp {
       return this.FNTOTAL;
     }
   }
-
   /**
-          * <b>getFnUsuario</b>
-          * @descripcion: Método getter que reemplaza valores null por cero
-          * @autor: Francisco Javier Cortes Torres, Desarrollador
-          * @params:
-          * @ultimaModificacion: 06/10/22
-        */
-
-
+   * <b>getFnUsuario</b>
+   * @descripcion: Método getter que reemplaza valores null por cero
+   * @autor: Diego Vázquez Pérez, Desarrollador
+   * @params:
+   * @ultimaModificacion: 06/10/22
+   */
   public String getFnUsuario(){
     if (this.FNUSUARIO == null || this.FNUSUARIO.isEmpty() ){
       return this.FNUSUARIO == null ? "" : this.FNUSUARIO;

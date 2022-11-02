@@ -1,4 +1,4 @@
-package com.elektra.frecuencias.daos;
+package com.elektra.frecuencias.dao;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.DisplayName;

@@ -1,4 +1,4 @@
-package com.elektra.frecuencias.propiedades.models;
+package com.elektra.frecuencias.propiedades.modelos;
 
 import io.quarkus.runtime.annotations.ConfigGroup;
 

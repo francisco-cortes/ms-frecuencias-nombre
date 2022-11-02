@@ -1,7 +1,7 @@
 package com.elektra.frecuencias.servicios;
 
-import com.elektra.frecuencias.dtos.DtoEstadoResponse;
-import com.elektra.frecuencias.utilidades.Constantes;
+import com.elektra.frecuencias.dto.DtoRespuestaEstado;
+import com.elektra.frecuencias.util.Constantes;
 import com.baz.servicios.Uid;
 
 import javax.inject.Singleton;
@@ -14,20 +14,17 @@ import javax.inject.Singleton;
  */
 @Singleton
 public class ServicioMonitoreo {
-
   /**
    * <b>generarUid</b>
-   * @descripcion: genera un UID para verificar el estado del modulo
+   * @descripcion: genera un UID para verificar el estado del módulo
    * @autor: Francisco Javier Cortes Torres, Desarrollador
-   *
    * @ultimaModificacion: 04/10/22
    */
-
-  public static DtoEstadoResponse generarUid(){
-    DtoEstadoResponse uidAlive = new DtoEstadoResponse();
+  public static DtoRespuestaEstado generarUid(){
+    DtoRespuestaEstado uidAlive = new DtoRespuestaEstado();
     uidAlive.setMensaje(Constantes.ESTADO_OK);
     /*
-    genera folio a traves de RemesasUtils.jar
+    genera folio a través de RemesasUtils.jar
      */
     uidAlive.setFolio("UDI" + Uid.generarUid(Constantes.TAMANO_UDI,Constantes.CICLOS_UDI));
     return uidAlive;
