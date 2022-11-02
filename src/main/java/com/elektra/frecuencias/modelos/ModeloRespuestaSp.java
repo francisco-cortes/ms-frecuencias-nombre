@@ -48,7 +48,6 @@ public class ModeloRespuestaSp {
    * @descripcion: Método getter obtiene valor de registros
    * o que reemplaza valores null por cero
    * @autor: Diego Vázquez Pérez, Desarrollador
-   * @params:
    * @ultimaModificacion: 06/10/22
    */
   public BigDecimal getFnTotal(){
@@ -63,7 +62,6 @@ public class ModeloRespuestaSp {
    * <b>getFnUsuario</b>
    * @descripcion: Método getter que reemplaza valores null por cero
    * @autor: Diego Vázquez Pérez, Desarrollador
-   * @params:
    * @ultimaModificacion: 06/10/22
    */
   public String getFnUsuario(){

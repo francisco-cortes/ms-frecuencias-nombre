@@ -16,7 +16,7 @@ import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 
 /**
- * <b>FiltroHipocoristico</b>
+ * <b>Filtrorecuencias</b>
  * @descripcion: Filtra la petición http.
  * @autor: Francisco Javier Cortes Torre, Desarrollador
  * @ultimaModificacion: 13/10/2022

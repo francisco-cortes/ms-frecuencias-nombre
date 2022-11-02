@@ -34,3 +34,6 @@ frecuencias:
       ip: 10.97.167.38
       port: 1522
       name: ORCL
+      esquema: C3MULTIMARCAS
+      paquete: PAFONETICO03
+      sp: SPCONSULTAFRECU

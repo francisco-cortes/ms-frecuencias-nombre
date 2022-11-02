@@ -13,7 +13,8 @@ public class Encabezado {
   private String token;
 
   @Validacion(tipoDato = Validacion.tiposDato.VARCHAR, requerido = true,
-    caracteresValidos = Validacion.LETRAS_Y_NUMEROS, longitudMin =15, longitudMax = 15 , expresionRegular = "UID\\d{12}")
+    caracteresValidos = Validacion.LETRAS_Y_NUMEROS, longitudMin =15, longitudMax = 15 ,
+    expresionRegular = "UID\\d{12}")
   @Schema(example = "UID123412341332", required = true, minLength =15 ,maxLength = 15,
     description = "Identificador único de trama.", name = "x-request-id")
   private String uid;

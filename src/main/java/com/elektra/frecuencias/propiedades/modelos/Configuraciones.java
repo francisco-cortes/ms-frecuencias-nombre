@@ -15,4 +15,7 @@ public interface Configuraciones {
   String ip();
   String port();
   String name();
+  String esquema();
+  String paquete();
+  String sp();
 }

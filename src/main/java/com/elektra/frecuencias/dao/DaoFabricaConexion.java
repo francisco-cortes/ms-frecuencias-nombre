@@ -56,7 +56,6 @@ public class DaoFabricaConexion {
     return DriverManager.getConnection(cadenaConexion,
       propiedades.conexionesdb().get(Constantes.C3REMESASC).credenciales().usuario(),
       propiedades.conexionesdb().get(Constantes.C3REMESASC).credenciales().contrasena());
-
   }
 
   /**
