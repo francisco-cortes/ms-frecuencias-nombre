@@ -3,7 +3,7 @@ quarkus:
     port: 8080
   container-image:
     group: ""
-    name: ms-frecuencias-nombre
+    name: ms-frecuencias-hard
     tag: latest
     registry: franciscoct
   kubernetes:
@@ -12,7 +12,7 @@ quarkus:
     level: INFO
     file:
       enable: true
-      path: ./log/ms-frecuencias-nombre.log
+      path: ./log/ms-frecuencias-hard.log
       level: INFO
       format: '{"log_data":{"fecha":"%d{yyyy-MM-dd HH:mm:ss}","Level":"%-5p","Mensaje":"%m","servicios":[%X{servicios}],"TiempoTotal":%X{tiempo}}}%n'
       rotation:

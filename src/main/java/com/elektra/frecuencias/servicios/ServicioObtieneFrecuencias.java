@@ -2,6 +2,7 @@ package com.elektra.frecuencias.servicios;
 
 import com.baz.excepciones.InternalServerErrorException;
 import com.elektra.frecuencias.dao.DaoConsultaFrecuencia;
+import com.elektra.frecuencias.dao.DaoConsultarCvsFrecuencias;
 import com.elektra.frecuencias.dto.DtoRespuestaFrecuencias;
 import com.elektra.frecuencias.modelos.ModeloRespuestaSp;
 import com.elektra.frecuencias.modelos.Resultado;
@@ -25,7 +26,7 @@ public class ServicioObtieneFrecuencias {
   inyeccion de clase dao
    */
   @Inject
-  private DaoConsultaFrecuencia daoConsultaFrecuencia;
+  private DaoConsultarCvsFrecuencias daoConsultarCvsFrecuencias;
 
   @Inject
   private UtilidadGenerarExcepcion utilidadGenerarExcepcion;
@@ -48,10 +49,12 @@ public class ServicioObtieneFrecuencias {
     ModeloRespuestaSp frecuenciaApellidos;
 
     try {
-      frecuenciaNombres = daoConsultaFrecuencia.consultarFrecuencias(nombre,
-        Constantes.TIPO_NOMBRE, log);
-      frecuenciaApellidos = daoConsultaFrecuencia.consultarFrecuencias(nombre,
-        Constantes.TIPO_APELLIDO, log);
+      //frecuenciaNombres = daoConsultaFrecuencia.consultarFrecuencias(nombre,
+        //Constantes.TIPO_NOMBRE, log);
+      //frecuenciaApellidos = daoConsultaFrecuencia.consultarFrecuencias(nombre,
+        //Constantes.TIPO_APELLIDO, log);
+      frecuenciaNombres = daoConsultarCvsFrecuencias.consultaDatos(nombre,"1");
+      frecuenciaApellidos = daoConsultarCvsFrecuencias.consultaDatos(nombre, "2");
       /*
       construcción de respuestas a través de getter
       */

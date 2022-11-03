@@ -76,12 +76,11 @@ public class ControladorFrecuencias {
           schema =  @Schema(implementation = DtoExcepcion.class))),
     })
   @GetMapping(value ="/obtener-frecuencias", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Response frecuencias(@RequestHeader(name = "uid", required = Constantes.ES_REQUERIDO) String uid,
-                              @RequestParam("nombre") String nombre){
+  public Response frecuencias(@RequestParam("nombre") String nombre){
     /*
     Frecuencias de un nombre
      */
-    DtoRespuestaFrecuencias respuesta = servicioObtieneFrecuencias.frecuenciasTotales(nombre.toUpperCase(), uid);
+    DtoRespuestaFrecuencias respuesta = servicioObtieneFrecuencias.frecuenciasTotales(nombre.toUpperCase(), "HARDCODE_UID");
     return Response.ok().entity(respuesta).build();
   }
 }
