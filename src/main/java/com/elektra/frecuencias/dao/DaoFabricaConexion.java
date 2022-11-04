@@ -1,10 +1,18 @@
 package com.elektra.frecuencias.dao;
 
+import com.baz.servicios.CifradorAes;
 import com.elektra.frecuencias.propiedades.Propiedades;
 import com.elektra.frecuencias.util.Constantes;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -26,13 +34,16 @@ public class DaoFabricaConexion {
   @Inject
   private Propiedades propiedades;
 
+  private CifradorAes cifradorAes;
+
   /**
    * <b>obtenerConexion</b>
    * @descripcion: crea le objeto SQL.Connection
    * @autor: Francisco Javier Cortes Torres, Desarrollador
    * @params: paisCero(String)
    **/
-  public Connection obtenerConexion() throws ClassNotFoundException, SQLException {
+  public Connection obtenerConexion() throws ClassNotFoundException, SQLException, InvalidAlgorithmParameterException, UnsupportedEncodingException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+    cifradorAes = new CifradorAes(false);
     /*
     propiedades necesarias
      */
@@ -43,19 +54,19 @@ public class DaoFabricaConexion {
      */
     String cadenaConexion = "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(LOAD_BALANCE=ON) " +
       "(ADDRESS=(PROTOCOL=TCP)(HOST="
-      + propiedades.conexionesdb().get(Constantes.C3REMESASC).ip()
+      + cifradorAes.desencriptarDato( propiedades.conexionesdb().get(Constantes.C3REMESASC).ip() )
       + ")(PORT="
-      + propiedades.conexionesdb().get(Constantes.C3REMESASC).port()
+      + cifradorAes.desencriptarDato( propiedades.conexionesdb().get(Constantes.C3REMESASC).port() )
       + "))" +
       ")(CONNECT_DATA=(SERVICE_NAME="
-      + propiedades.conexionesdb().get(Constantes.C3REMESASC).name() +
+      + cifradorAes.desencriptarDato( propiedades.conexionesdb().get(Constantes.C3REMESASC).name() )+
       ")(SERVER=DEDICATED)(FAILOVER_MODE=(TYPE=SELECT)(METHOD=BASIC)(RETIRES=180)(DELAY=5))))";
     /*
     construye y retorna el objeto connection a través del drive manager
      */
     return DriverManager.getConnection(cadenaConexion,
-      propiedades.conexionesdb().get(Constantes.C3REMESASC).credenciales().usuario(),
-      propiedades.conexionesdb().get(Constantes.C3REMESASC).credenciales().contrasena());
+      cifradorAes.desencriptarDato( propiedades.conexionesdb().get(Constantes.C3REMESASC).credenciales().usuario() ),
+      cifradorAes.desencriptarDato( propiedades.conexionesdb().get(Constantes.C3REMESASC).credenciales().contrasena()));
   }
 
   /**

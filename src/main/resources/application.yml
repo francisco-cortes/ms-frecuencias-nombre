@@ -29,11 +29,11 @@ frecuencias:
   conexionesdb:
     c3remesas:
       credenciales:
-        usuario: C3Multimarcas
-        contrasena: BuSTxN4LMm
-      ip: 10.97.167.38
-      port: 1522
-      name: ORCL
-      esquema: C3MULTIMARCAS
-      paquete: PAFONETICO03
-      sp: SPCONSULTAFRECU
+        usuario: HcJMnM8gN-TKHnpBpbWb3A
+        contrasena: uQ9Rvb5ntqzOEFmBEjGoUQ
+      ip: yv2LD6xR80tmRP8w85txug
+      port: CToWpkbX-HoHYUG1vmdmfQ
+      name: lI0O4KmZ5PKfmkBf-hLKjg
+      esquema: zhr_8DwfomUUehvAapsnQQ
+      paquete: C1V_vwz-4tDrxvaz_MkUHA
+      sp: S0GfqrYKn5SMIq8lIty8cA
