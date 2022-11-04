@@ -14,7 +14,7 @@ import javax.inject.Singleton;
 
 /**
  * <b>ServicioObtieneFrecuencias</b>
- * @descripcion: Service que implementa logica necesaria para obtener una respuesta de la forma
+ * @descripcion: Service que implementa lógica necesaria para obtener una respuesta de la forma
  * @autor: Francisco Javier Cortes Torres, Desarrollador
  * @ultimaModificacion: 07/06/22
  */
@@ -46,8 +46,9 @@ public class ServicioObtieneFrecuencias {
     DtoRespuestaFrecuencias respuesta = new DtoRespuestaFrecuencias();
     ModeloRespuestaSp frecuenciaNombres;
     ModeloRespuestaSp frecuenciaApellidos;
-    nombre = nombre.toUpperCase();
+
     try {
+      nombre = nombre.toUpperCase();
       frecuenciaNombres = daoConsultaFrecuencia.consultarFrecuencias(nombre,
         Constantes.TIPO_NOMBRE, log);
       frecuenciaApellidos = daoConsultaFrecuencia.consultarFrecuencias(nombre,
@@ -77,7 +78,7 @@ public class ServicioObtieneFrecuencias {
     catch (Exception excepcion){
       log.registrarExcepcion(excepcion, Constantes.MENSAJE_ERROR_SQL);
       /*
-      arroja respuesta controlada a través del controlador de exepciones
+      arroja respuesta controlada a través del controlador de excepciones
        */
       utilidadGenerarExcepcion.generarExcepcion(Constantes.CODIGO_HTTP_500, resultado.getCodigo(),
         resultado.getMensaje() + " " + excepcion.getMessage(), uid);
