@@ -46,31 +46,31 @@ public class ControladorFrecuencias {
     schema = @Schema(type = SchemaType.STRING),
     description = "Token para el iniciar al solicitud.",
     example = "022DEE73F8528EA4445B133DDB5B224848B2258B",
-    in = ParameterIn.HEADER, required = false)
+    in = ParameterIn.HEADER, required = Constantes.NO_REQUERIDO)
   @Parameter(name ="uid",
     schema = @Schema(type = SchemaType.STRING),
     description = "Uid para identificación del service.",
     example = "UID123412341332",
-    in = ParameterIn.HEADER, required = true)
+    in = ParameterIn.HEADER, required = Constantes.ES_REQUERIDO)
   @APIResponses(value =
     {
       @APIResponse(
-        responseCode = Constantes.HTTP_200,
+        responseCode = Constantes.CODIGO_HTTP_200,
         description = "Respuesta Controlada",
         content = @Content(mediaType = "application/json",
           schema =  @Schema(implementation = DtoRespuestaFrecuencias.class))),
       @APIResponse(
-        responseCode = Constantes.HTTP_400,
+        responseCode = Constantes.CODIGO_HTTP_400,
         description = "Solicitud incorrecta",
         content = @Content(mediaType = "application/json",
           schema =  @Schema(implementation = DtoExcepcion.class))),
       @APIResponse(
-        responseCode = Constantes.HTTP_404,
+        responseCode = Constantes.CODIGO_HTTP_404,
         description = "No Encontrado",
         content = @Content(mediaType = "application/json",
           schema =  @Schema(implementation = DtoExcepcion.class))),
       @APIResponse(
-        responseCode = Constantes.HTTP_500,
+        responseCode = Constantes.CODIGO_HTTP_500,
         description = "Error Interno en la aplicación",
         content = @Content(mediaType = "application/json",
           schema =  @Schema(implementation = DtoExcepcion.class))),
@@ -81,7 +81,7 @@ public class ControladorFrecuencias {
     /*
     Frecuencias de un nombre
      */
-    DtoRespuestaFrecuencias respuesta = servicioObtieneFrecuencias.frecuenciasTotales(nombre.toUpperCase(), uid);
+    DtoRespuestaFrecuencias respuesta = servicioObtieneFrecuencias.frecuenciasTotales(nombre, uid);
     return Response.ok().entity(respuesta).build();
   }
 }

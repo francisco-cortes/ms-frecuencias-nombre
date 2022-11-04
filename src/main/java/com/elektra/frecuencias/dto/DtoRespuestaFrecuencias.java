@@ -11,11 +11,11 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import java.math.BigDecimal;
 
 /**
-        * <b>DtoRespuestaFrecuencias</b>
-        * @descripcion: breve descripción del contenido
-        * @autor: Francisco Javier Cortes Torres, Desarrollador
-        * @ultimaModificacion: 06/10/22
-       */
+ * <b>DtoRespuestaFrecuencias</b>
+ * @descripcion: breve descripción del contenido
+ * @autor: Francisco Javier Cortes Torres, Desarrollador
+ * @ultimaModificacion: 06/10/22
+ */
 
 @Data
 @AllArgsConstructor

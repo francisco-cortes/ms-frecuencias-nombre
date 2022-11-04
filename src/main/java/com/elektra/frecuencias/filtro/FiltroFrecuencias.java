@@ -16,7 +16,7 @@ import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 
 /**
- * <b>Filtrorecuencias</b>
+ * <b>FiltroFrecuencias</b>
  * @descripcion: Filtra la petición http.
  * @autor: Francisco Javier Cortes Torre, Desarrollador
  * @ultimaModificacion: 13/10/2022
@@ -31,7 +31,7 @@ public class FiltroFrecuencias implements ContainerRequestFilter {
   public void filter(ContainerRequestContext requestContext) throws IOException {
     System.out.println("ENTRA AL FILTER");
     LogServicio log = new LogServicio();
-    String nombreClaseMetodo  = "FiltroHipocoristico-filtros";
+    String nombreClaseMetodo  = "FiltroFrecuencias-filtros";
     log.iniciarTiempoMetodo(nombreClaseMetodo, Constantes.NOMBRE_MS);
 
     String uid = requestContext.getHeaderString("uid");
@@ -40,13 +40,12 @@ public class FiltroFrecuencias implements ContainerRequestFilter {
 
     System.out.println("VALOR DE uid "+ uid);
     try {
-
       if (!"/datos/frecuencias/obtener-frecuencias".equals(requestContext.getUriInfo().getPath())) {
         return;
       }
 
       System.out.println("ENTRA EN EL TRY");
-      Resultado resultado = new Resultado(uid, Constantes.CODIGO_EXITO, Constantes.MENSAJE_EXITO);
+      Resultado resultado = new Resultado(uid, Constantes.CODIGO_EXITO, Constantes.MENSAJE_EXITO_200);
       validarDto = new ValidarDto();
       System.out.println("entra a validar peticion ");
       validarDto.validarPeticionAes(new Encabezado(uid, token), resultado);
@@ -55,8 +54,8 @@ public class FiltroFrecuencias implements ContainerRequestFilter {
       System.out.println(resultado.getCodigo());
 
       if (!resultado.getCodigo().equals(Constantes.CODIGO_EXITO)) {
-        UTILIDAD_GENERAR_EXCEPCION.generarExcepcion(Constantes.HTTP_400, resultado.getCodigo(),
-          resultado.getMensaje(), uid);
+        UTILIDAD_GENERAR_EXCEPCION.generarExcepcion(Constantes.CODIGO_HTTP_400, resultado.getCodigo(),
+          Constantes.MENSAJE_CODIGO_400, uid);
       }
       return;
     }
@@ -66,7 +65,7 @@ public class FiltroFrecuencias implements ContainerRequestFilter {
     }
     catch(Exception excepcion){
       log.registrarExcepcion(excepcion, null);
-      UTILIDAD_GENERAR_EXCEPCION.generarExcepcion(Constantes.HTTP_500, Constantes.CODIGO_ERROR_GENERAL_API,
+      UTILIDAD_GENERAR_EXCEPCION.generarExcepcion(Constantes.CODIGO_HTTP_500, Constantes.CODIGO_ERROR_GENERAL,
         excepcion.getMessage(), uid);
     }
   }

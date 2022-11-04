@@ -18,7 +18,6 @@ import javax.inject.Singleton;
  * @autor: Francisco Javier Cortes Torres, Desarrollador
  * @ultimaModificacion: 07/06/22
  */
-
 @Singleton
 public class ServicioObtieneFrecuencias {
   /*
@@ -41,12 +40,13 @@ public class ServicioObtieneFrecuencias {
     LogServicio log = new LogServicio();
     log.iniciarTiempoMetodo(nombreClaseMetodo, Constantes.NOMBRE_MS);
 
-    Resultado resultado = new Resultado(uid, "CX00000",
-      "Ocurrió un problema en el proceso de frecuencias.");
+    Resultado resultado = new Resultado(uid, Constantes.CODIGO_ERROR_GENERAL,
+      Constantes.MENSAJE_CODIGO_500);
+
     DtoRespuestaFrecuencias respuesta = new DtoRespuestaFrecuencias();
     ModeloRespuestaSp frecuenciaNombres;
     ModeloRespuestaSp frecuenciaApellidos;
-
+    nombre = nombre.toUpperCase();
     try {
       frecuenciaNombres = daoConsultaFrecuencia.consultarFrecuencias(nombre,
         Constantes.TIPO_NOMBRE, log);
@@ -67,19 +67,19 @@ public class ServicioObtieneFrecuencias {
         respuesta.setMensaje(Constantes.MENSAJE_NO_ENCONTRADO);
       }
       else {
-        respuesta.setMensaje(Constantes.MENSAJE_EXITO);
+        respuesta.setMensaje(Constantes.MENSAJE_EXITO_200);
       }
     }
     catch (InternalServerErrorException excepcion){
-      log.registrarExcepcion(excepcion, null);
+      log.registrarExcepcion(excepcion, resultado.getMensaje());
       throw excepcion;
     }
     catch (Exception excepcion){
-      log.registrarExcepcion(excepcion, "Error SQL");
+      log.registrarExcepcion(excepcion, Constantes.MENSAJE_ERROR_SQL);
       /*
       arroja respuesta controlada a través del controlador de exepciones
        */
-      utilidadGenerarExcepcion.generarExcepcion(Constantes.HTTP_500, resultado.getCodigo(),
+      utilidadGenerarExcepcion.generarExcepcion(Constantes.CODIGO_HTTP_500, resultado.getCodigo(),
         resultado.getMensaje() + " " + excepcion.getMessage(), uid);
     }
     finally {

@@ -7,7 +7,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-
+/**
+ * <b>ModeloRespuestaSp</b>
+ * @descripcion: breve descripción del contenido
+ * @autor: Diego Vázquez Pérez, Desarrollador
+ * @ultimaModificacion: 04/11/22
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

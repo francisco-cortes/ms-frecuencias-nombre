@@ -6,7 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+/**
+ * <b>Resultado</b>
+ * @descripcion: breve descripción del contenido
+ * @autor: Francisco Javier Cortes Torres, Desarrollador
+ * @ultimaModificacion: 04/11/22
+ */
 @Getter
 @Setter
 @AllArgsConstructor
