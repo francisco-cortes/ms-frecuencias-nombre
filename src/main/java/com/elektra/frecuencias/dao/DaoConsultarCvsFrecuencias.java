@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class DaoConsultarCvsFrecuencias {
     int registro = 0;
     int total = 0;
 
-    for(int i = 0; i < dick.size()-1; i++){
+    for(int i = 0; i < dick.size(); i++){
       if(dick.get(i).getFiTipoDato().equals(tipoNombre) && dick.get(i).getFcDatoBeneFic().equals(nombre)){
         registro = Integer.parseInt(dick.get(i).getFnRegistros());
         total = Integer.parseInt(dick.get(i).getFnTotal());
@@ -35,10 +36,10 @@ public class DaoConsultarCvsFrecuencias {
 
   private List<DickModel> leerDick(){
     List<DickModel> lista = new ArrayList<DickModel>();
-    String file = "Datos_Frecuencia.csv";
+    String file = "/deployments/Datos_Frecuencia.csv";
     System.out.println("Entra el try de leer diccionario");
     try {
-      BufferedReader br = new BufferedReader(new FileReader(file));
+      BufferedReader br = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8));
       String line;
 
       while ((line = br.readLine()) != null) {

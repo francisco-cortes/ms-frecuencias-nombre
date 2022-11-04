@@ -42,16 +42,6 @@ public class ControladorFrecuencias {
    */
   @Operation(summary = "Método que consulta las frecuencias de aparición de un nombre o apellido",
     description = "Método GET")
-  @Parameter(name ="token",
-    schema = @Schema(type = SchemaType.STRING),
-    description = "Token para el iniciar al solicitud.",
-    example = "022DEE73F8528EA4445B133DDB5B224848B2258B",
-    in = ParameterIn.HEADER, required = false)
-  @Parameter(name ="uid",
-    schema = @Schema(type = SchemaType.STRING),
-    description = "Uid para identificación del service.",
-    example = "UID123412341332",
-    in = ParameterIn.HEADER, required = true)
   @APIResponses(value =
     {
       @APIResponse(
