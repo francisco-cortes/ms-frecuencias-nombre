@@ -1,9 +1,9 @@
 quarkus:
   http:
-    port: 8080
+    port: 80
   container-image:
     group: ""
-    name: ms-frecuencias-hard
+    name: ms-frecuencias
     tag: latest
     registry: franciscoct
   kubernetes:
