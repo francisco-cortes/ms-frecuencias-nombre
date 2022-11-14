@@ -39,34 +39,23 @@ public class FiltroFrecuencias implements ContainerRequestFilter {
     ValidarDto validarDto;
 
     System.out.println("VALOR DE uid "+ uid);
-    try {
-      if (!"/datos/frecuencias/obtener-frecuencias".equals(requestContext.getUriInfo().getPath())) {
-        return;
-      }
 
-      System.out.println("ENTRA EN EL TRY");
-      Resultado resultado = new Resultado(uid, Constantes.CODIGO_EXITO, Constantes.MENSAJE_EXITO_200);
-      validarDto = new ValidarDto();
-      System.out.println("entra a validar peticion ");
-      validarDto.validarPeticionAes(new Encabezado(uid, token), resultado);
-      System.out.println(resultado.getMensaje());
-      System.out.println("sale de validar peticion");
-      System.out.println(resultado.getCodigo());
-
-      if (!resultado.getCodigo().equals(Constantes.CODIGO_EXITO)) {
-        UTILIDAD_GENERAR_EXCEPCION.generarExcepcion(Constantes.CODIGO_HTTP_400, resultado.getCodigo(),
-          Constantes.MENSAJE_CODIGO_400, uid);
-      }
+    if (!"/datos/frecuencias/obtener-frecuencias".equals(requestContext.getUriInfo().getPath())) {
       return;
     }
-    catch(BadRequestException | UnauthorizedException excepcion) {
-      log.registrarExcepcion(excepcion, null);
-      throw excepcion;
+
+    System.out.println("ENTRA EN EL TRY");
+    Resultado resultado = new Resultado(uid, Constantes.CODIGO_EXITO, Constantes.MENSAJE_EXITO_200);
+    validarDto = new ValidarDto();
+    System.out.println("entra a validar peticion ");
+    try {
+      validarDto.validarPeticionAes(new Encabezado(uid, token), resultado);
+    } catch (Exception e) {
+      throw new RuntimeException(e);
     }
-    catch(Exception excepcion){
-      log.registrarExcepcion(excepcion, null);
-      UTILIDAD_GENERAR_EXCEPCION.generarExcepcion(Constantes.CODIGO_HTTP_500, Constantes.CODIGO_ERROR_GENERAL,
-        excepcion.getMessage(), uid);
-    }
+    System.out.println(resultado.getMensaje());
+    System.out.println("sale de validar peticion");
+    System.out.println(resultado.getCodigo());
+    return;
   }
 }

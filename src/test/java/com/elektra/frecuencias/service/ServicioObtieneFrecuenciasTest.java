@@ -20,7 +20,8 @@ public class ServicioObtieneFrecuenciasTest {
   public void testFrecuenciasEncontradas(){
     final String NOMBRE_EXISTENTE = "BELEN";
     boolean passed;
-    DtoRespuestaFrecuencias dtoRespuestaFrecuencias = servicioObtieneFrecuencias.frecuenciasTotales(NOMBRE_EXISTENTE);
+    DtoRespuestaFrecuencias dtoRespuestaFrecuencias = servicioObtieneFrecuencias.frecuenciasTotales(NOMBRE_EXISTENTE,
+      "TESTUID");
     if(dtoRespuestaFrecuencias.getFrecuenciaNombre().intValue() > Constantes.ZERO_DEFUAULT){
       passed = true;
     }
@@ -35,7 +36,8 @@ public class ServicioObtieneFrecuenciasTest {
   public void testFrecuenciasNOEncontradas(){
     final String NOMBRE_INEXISTENTE = "XDDDDASDASDASDKASKDASD";
     boolean passed;
-    DtoRespuestaFrecuencias dtoRespuestaFrecuencias = servicioObtieneFrecuencias.frecuenciasTotales(NOMBRE_INEXISTENTE);
+    DtoRespuestaFrecuencias dtoRespuestaFrecuencias = servicioObtieneFrecuencias.frecuenciasTotales(NOMBRE_INEXISTENTE,
+      "TESTUID");
     if(dtoRespuestaFrecuencias.getFrecuenciaNombre().intValue() <= Constantes.ZERO_DEFUAULT){
       passed = true;
     }

@@ -1,6 +1,5 @@
 package com.elektra.frecuencias.modelos;
 
-import com.elektra.frecuencias.util.Constantes;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,12 +39,7 @@ public class ModeloRespuestaSp {
    * @ultimaModificacion: 06/10/22
    */
   public BigDecimal getFnRegistros(){
-    if (this.FNREGISTROS == null || this.FNREGISTROS.intValue() == Constantes.ZERO_DEFUAULT){
-      return this.FNREGISTROS == null ? BigDecimal.valueOf(0) : this.FNREGISTROS;
-    }
-    else {
-      return this.FNREGISTROS;
-    }
+    return this.FNREGISTROS;
   }
 
   /**
@@ -56,12 +50,7 @@ public class ModeloRespuestaSp {
    * @ultimaModificacion: 06/10/22
    */
   public BigDecimal getFnTotal(){
-    if (this.FNTOTAL == null || this.FNREGISTROS.intValue() == Constantes.ZERO_DEFUAULT){
-      return this.FNTOTAL == null ? BigDecimal.valueOf(0) : this.FNTOTAL;
-    }
-    else {
-      return this.FNTOTAL;
-    }
+    return this.FNTOTAL;
   }
   /**
    * <b>getFnUsuario</b>
@@ -70,12 +59,7 @@ public class ModeloRespuestaSp {
    * @ultimaModificacion: 06/10/22
    */
   public String getFnUsuario(){
-    if (this.FNUSUARIO == null || this.FNUSUARIO.isEmpty() ){
-      return this.FNUSUARIO == null ? "" : this.FNUSUARIO;
-    }
-    else {
-      return this.FNUSUARIO;
-    }
+    return this.FNUSUARIO;
   }
 
 }
