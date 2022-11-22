@@ -29,33 +29,38 @@ public class FiltroFrecuencias implements ContainerRequestFilter {
 
   @Override
   public void filter(ContainerRequestContext requestContext) throws IOException {
-    System.out.println("ENTRA AL FILTER");
     LogServicio log = new LogServicio();
-    String nombreClaseMetodo  = "FiltroFrecuencias-filtros";
+    String nombreClaseMetodo  = "FiltroHipocoristico-filtro";
     log.iniciarTiempoMetodo(nombreClaseMetodo, Constantes.NOMBRE_MS);
 
     String uid = requestContext.getHeaderString("uid");
     String token = requestContext.getHeaderString("token");
     ValidarDto validarDto;
 
-    System.out.println("VALOR DE uid "+ uid);
-
-    if (!"/datos/frecuencias/obtener-frecuencias".equals(requestContext.getUriInfo().getPath())) {
-      return;
-    }
-
-    System.out.println("ENTRA EN EL TRY");
-    Resultado resultado = new Resultado(uid, Constantes.CODIGO_EXITO, Constantes.MENSAJE_EXITO_200);
-    validarDto = new ValidarDto();
-    System.out.println("entra a validar peticion ");
     try {
+      if (!"/datos/frecuencias/obtener-frecuencias".equals(requestContext.getUriInfo().getPath())) {
+        return;
+      }
+
+      Resultado resultado = new Resultado(uid, Constantes.CODIGO_EXITO, Constantes.MENSAJE_EXITO);
+      validarDto = new ValidarDto();
       validarDto.validarPeticionAes(new Encabezado(uid, token), resultado);
-    } catch (Exception e) {
-      throw new RuntimeException(e);
+
+      if (!resultado.getCodigo().equals(Constantes.CODIGO_EXITO)) {
+        UTILIDAD_GENERAR_EXCEPCION.generarExcepcion(Constantes.CODIGO_HTTP_400, Constantes.CODIGO_SOLICITUD_INCORRECTA,
+          resultado.getMensaje(), uid);
+      }
+      return;
+
     }
-    System.out.println(resultado.getMensaje());
-    System.out.println("sale de validar peticion");
-    System.out.println(resultado.getCodigo());
-    return;
+    catch(BadRequestException | UnauthorizedException excepcion) {
+      log.registrarExcepcion(excepcion, null);
+      throw excepcion;
+    }
+    catch(Exception excepcion){
+      log.registrarExcepcion(excepcion, null);
+      UTILIDAD_GENERAR_EXCEPCION.generarExcepcion(Constantes.CODIGO_HTTP_500, Constantes.CODIGO_ERROR_GENERAL,
+        excepcion.getMessage(), uid);
+    }
   }
 }

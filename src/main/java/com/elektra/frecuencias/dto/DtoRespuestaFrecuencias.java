@@ -1,11 +1,8 @@
 package com.elektra.frecuencias.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import java.math.BigDecimal;
@@ -18,9 +15,6 @@ import java.math.BigDecimal;
  */
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Setter
 @Getter
 @JsonPropertyOrder({"frecuenciaNombre","totalregistrosNombre","frecuenciaApellidos","totalRegistrosApellidos"})
 public class DtoRespuestaFrecuencias {

@@ -122,7 +122,6 @@ public class DaoConsultaFrecuencia {
         while (resultSet.next()){
           cursor.setFNREGISTROS(resultSet.getBigDecimal("FNREGISTROS"));
           cursor.setFNTOTAL(resultSet.getBigDecimal("FNTOTAL"));
-          cursor.setFNUSUARIO(resultSet.getString("FCUSUARIO"));
         }
       }
     }

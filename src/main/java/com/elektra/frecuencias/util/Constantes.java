@@ -35,6 +35,8 @@ public class Constantes {
   public final static String CODIGO_SOLICITUD_INCORRECTA = "IDCMF00004";
   public final static String CODIGO_NO_AUTORIZADO = "IDCMF00005";
   public final static String CODIGO_ERROR_GENERAL = "IDCMF00006";
+  public static final String MENSAJE_EXITO = "Operacion exitosa.";
+  public static final String CODIGO_EXITO = "C00000";
 
   public static final String C3REMESASC = "c3remesas";
   public final static String C3MULTIMARCAS = "C3MULTIMARCAS";
@@ -48,7 +50,6 @@ public class Constantes {
 
   public final static boolean ES_REQUERIDO = true;
   public final static boolean NO_REQUERIDO = false;
-  public static final String CODIGO_EXITO = "E";
   /*
   Números
   */

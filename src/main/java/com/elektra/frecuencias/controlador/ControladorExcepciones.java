@@ -1,9 +1,7 @@
 package com.elektra.frecuencias.controlador;
 
 import com.baz.excepciones.BadRequestException;
-import com.baz.excepciones.UnauthorizedException;
 import com.baz.excepciones.DtoExcepcion;
-import com.baz.excepciones.NotFoundException;
 import com.baz.excepciones.InternalServerErrorException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -31,37 +29,6 @@ public class ControladorExcepciones {
       peticionIncorrecta.getFolio(),
       peticionIncorrecta.getDetalles());
   }
-
-  /**
-   * <b>UnauthorizedException</b>
-   * @descripcion: Método para personalizar la salida del tipo 400.
-   * @autor: Francisco Javier Cortes Torres.
-   * @param: peticionIncorrecta Datos de la excepción.
-   * @ultimaModificacion: 17/10/2022
-   */
-  @ExceptionHandler(value = {UnauthorizedException.class})
-  public DtoExcepcion unauthorizedException(UnauthorizedException errorSeguridad){
-    return new DtoExcepcion(errorSeguridad.getCodigo(),
-      errorSeguridad.getMensaje(),
-      errorSeguridad.getFolio(),
-      errorSeguridad.getDetalles());
-  }
-
-  /**
-   * <b>notFoundException</b>
-   * @descripcion: Método para personalizar la salida del tipo 400.
-   * @autor: Francisco Javier Cortes Torres.
-   * @param: peticionIncorrecta Datos de la excepción.
-   * @ultimaModificacion: 17/10/2022
-   */
-  @ExceptionHandler(value = {NotFoundException.class})
-  public DtoExcepcion notFoundException(NotFoundException recursoNoEncontrado){
-    return new DtoExcepcion(recursoNoEncontrado.getCodigo(),
-      recursoNoEncontrado.getMensaje(),
-      recursoNoEncontrado.getFolio(),
-      recursoNoEncontrado.getDetalles());
-  }
-
   /**
    * <b>InternalServerErrorException</b>
    * @descripcion: Método para personalizar la salida del tipo 400.

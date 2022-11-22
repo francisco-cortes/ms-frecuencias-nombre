@@ -16,10 +16,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
  */
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Setter
-@Getter
 @JsonPropertyOrder({"mensaje","folio"})
 public class DtoRespuestaEstado {
   /*
